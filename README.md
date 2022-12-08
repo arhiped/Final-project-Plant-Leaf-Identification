@@ -1,73 +1,63 @@
-По данным Продовольственной и сельскохозяйственной организации Объединенных Наций (ООН), трансграничные вредители и болезни растений поражают продовольственные культуры, нанося значительный ущерб фермерам и угрожая продовольственной безопасности.
+# Plant Leaf Identification
 
-Болезни растений ежегодно приводят к потере 10-16% мирового урожая сельскохозяйственных культур, стоимость которого оценивается в 220 миллиардов долларов США. Согласно отчету Продовольственной и сельскохозяйственной организации (ФАО), ожидается, что к 2050 году население земли достигнет 9,1 миллиарда человек. Поэтому необходимо увеличить сельскохозяйственное производство до 70%, чтобы удовлетворить потребности в продуктах питания постоянно растущего населения. С другой стороны, широкое использование химических веществ, таких как бактерициды, фунгициды и нематициды, для борьбы с болезнями растений оказывает неблагоприятное воздействие на агроэкосистему. В настоящее время существует потребность в эффективных методах раннего выявления заболеваний для борьбы с болезнями растений для обеспечения продовольственной безопасности и устойчивости агроэкосистемы.
+Identification of plants through plant leaves on the basis of their shape, color and texture features using digital image processing techniques.
 
-В последние годы распространение трансграничных вредителей и болезней растений резко возросло. Глобализация, торговля и изменение климата, а также снижение устойчивости производственных систем из-за десятилетий интенсификации сельского хозяйства — все это сыграло свою роль.
+## Overview
 
-Трансграничные вредители и болезни растений могут легко распространиться на несколько стран и достичь масштабов эпидемии. Вспышки и всплески могут привести к огромным потерям посевов и пастбищ, угрожая средствам к существованию уязвимых фермеров и продовольственной безопасности миллионов людей одновременно.
+Plant Leaf Identification is a system which is able to classify **32 different species of plants** on the basis of their leaves using digital image processing techniques. The images are first preprocessed and then their shape, color and texture based features are extracted from the processed image.
 
-Если вы занимаетесь наукой о данных или машинным обучением, вы, вероятно, слышали об этих платформах, требующих краудсорсинга данных. Первое, что приходит мне на ум, — это Kaggle. Kaggle — это краудсорсинговая платформа, которая привлекает, обучает, обучает и бросает вызов специалистам по обработке данных со всего мира для решения задач data science, машинного обучения и прогнозной аналитики. Эта платформа позволяет специалистам по обработке данных и другим разработчикам участвовать в соревнованиях по машинному обучению, писать и обмениваться кодом, а также размещать наборы данных.
+A dataset was created using the extracted features to train and test the model. The model used was **Support Vector Machine Classifier** and was able to classify with **90.05% accuracy**. 
 
-В поисках проектных идей и наборов данных я обнаружил другую платформу, похожую на Kaggle, но как некоммерческую, я говорю о crowdAI. crowdAI также принимает вызовы в области открытых данных и помогает университетам, правительственным учреждениям, НПО или предприятиям запускать и управлять своими проблемами с данными. Платформа crowdAI — это инфраструктура с открытым исходным кодом, которая может немедленно привлечь тысячи специалистов по обработке данных по всему миру для работы над интересными проблемами с данными.
+## Dataset
 
-Я хотел упомянуть crowdAI, потому что именно там была задачу по классификации болезней растений, но я хотел достичь той же цели, используя другую платформу глубокого обучения: "PyTorch". Итак, я разработал приложение для искусственного интеллекта, используя модель глубокого обучения и технику трансферного обучения.
+The dataset used is [**Flavia leaves dataset**](http://flavia.sourceforge.net) which also has the breakpoints and the names mentioned for the leaves dataset
 
-Компьютерное зрение — это область глубокого обучения, которая растет с каждым днем. Есть много областей, в которых компьютерное зрение может помочь.
+## Dependencies
 
-В том проекте я буду внедрять модель глубокого обучения, которая может выявлять болезни растений, используя Pytorch framework и архитектуру CNN. Цель состоит в том, чтобы обнаружить различные заболевания растений, посмотрев на картинку.
+* [Numpy](http://www.numpy.org)
+* [Pandas](https://pandas.pydata.org)
+* [OpenCV](https://opencv.org)
+* [Matplotlib](https://matplotlib.org)
+* [Scikit Learn](http://scikit-learn.org/)
+* [Mahotas](http://mahotas.readthedocs.io/en/latest/)
 
-Я обучу этот классификатор изображений распознавать различные болезни растений по изображению. Это может быть реализовано в приложении для телефона, которое сообщает вам, на какой тип заболевания смотрит ваша камера. Я буду использовать набор данных Plant Village.
+It is recommended to use [Anaconda Python 3.6 distribution](https://www.anaconda.com) and using a `Jupyter Notebook`
 
-Набор данных Plant Village содержит 38 различных классов болезней растений и один фоновый класс из открытого набора данных фоновых изображений Стэнфорда.
+## Instructions
 
-Классы:
+* Create the following folders in the project root - 
+  * `Flavia leaves dataset` : will contain Flavia dataset
+  * `mobile captures` : will contain mobile captured leaf images for additional testing purposes
 
+## Project structure
 
-- Apple___Apple_scab
-- Apple___Black_rot
-- Apple___Cedar_apple_rust
-- Apple___healthy
-- Blueberry___healthy
-- Cherry_(including_sour)___Powdery_mildew
-- Cherry_(including_sour)___healthy
-- Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot
-- Corn_(maize)___Common_rust_
-- Corn_(maize)___Northern_Leaf_Blight
-- Corn_(maize)___healthy
-- Grape___Black_rot
-- Grape___Esca_(Black_Measles)
-- Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
-- Grape___healthy
-- Orange___Haunglongbing_(Citrus_greening)
-- Peach___Bacterial_spot
-- Peach___healthy
-- Pepper,_bell___Bacterial_spot
-- Pepper,_bell___healthy
-- Potato___Early_blight
-- Potato___Late_blight
-- Potato___healthy
-- Raspberry___healthy
-- Soybean___healthy
-- Squash___Powdery_mildew
-- Strawberry___Leaf_scorch
-- Strawberry___healthy
-- Tomato___Bacterial_spot
-- Tomato___Early_blight
-- Tomato___Late_blight
-- Tomato___Leaf_Mold
-- Tomato___Septoria_leaf_spot
-- Tomato___Spider_mites Two-spotted_spider_mite
-- Tomato___Target_Spot
-- Tomato___Tomato_Yellow_Leaf_Curl_Virus
-- Tomato___Tomato_mosaic_virus
-- Tomato___healthy
+* [single_image_process_file.ipynb](single_image_process_file.ipynb) : contains exploration of preprocessing and feature extraction techniques by operating on a single image
+* [background_subtract_camera_capture_leaf_file.ipynb](background_subtract_camera_capture_leaf_file.ipynb) : contains exploration of techniques to create a background subtraction function to remove background from mobile camera captured leaf images
+* [classify_leaves_flavia.ipynb](Flavia%20py%20files/classify_leaves_flavia.ipynb) : uses extracted features as inputs to the model and classifies them using SVM classifier
+* [preprocess_extract_dataset_flavia.ipynb](Flavia%20py%20files/preprocess_extract_dataset_flavia.ipynb) : contains create_dataset() function which performs image pre-processing and feature extraction on the dataset. The dataset is stored in `Flavia_features.csv`
 
-<B>Инструкции</B>
+## Methodology
 
-Проект разбит на несколько этапов:
--	Загрузите и предварительно обработайте набор данных изображений
--	Обучите классификатор изображений в вашем наборе данных
--	Используйте обученный классификатор для прогнозирования содержимого изображения
+### 1. Pre-processing
 
-Все, что вам нужно для воссоздания этого проекта, есть в ноутбуке jupyter. Все было закодировано в Google Colab из-за его графического процессора.
+The following steps were followed for pre-processing the image:
 
+  1. Conversion of RGB to Grayscale image
+  2. Smoothing image using Guassian filter
+  3. Adaptive image thresholding using Otsu's thresholding method
+  4. Closing of holes using Morphological Transformation
+  5. Boundary extraction using contours
+
+### 2. Feature extraction
+
+Variou types of leaf features were extracted from the pre-processed image which are listed as follows:
+
+  1. *Shape based features* : physiological length,physological width, area, perimeter, aspect ratio, rectangularity, circularity
+  2. *Color based features* : mean and standard deviations of R,G and B channels
+  3. *Texture based features* : contrast, correlation, inverse difference moments, entropy
+  
+### 3. Model building and testing
+
+  (a) [Support Vector Machine](http://scikit-learn.org/stable/modules/svm.html) Classifier was used as the model to classify the plant species <br>
+  (b) Features were then scaled using [StandardScaler](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)<br>
+  (c) Also parameter tuning was done to find the appropriate hyperparameters of the model using [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
