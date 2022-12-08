@@ -1,18 +1,18 @@
-# Plant Leaf Identification
+# Идентификация листьев растения
 
-Identification of plants through plant leaves on the basis of their shape, color and texture features using digital image processing techniques.
+Идентификация растений по листьям растений на основе их формы, цвета и текстурных особенностей с использованием методов цифровой обработки изображений.
 
-## Overview
+## Обзор
 
-Plant Leaf Identification is a system which is able to classify **32 different species of plants** on the basis of their leaves using digital image processing techniques. The images are first preprocessed and then their shape, color and texture based features are extracted from the processed image.
+Идентификация листьев растений - это система, которая способна классифицировать ** 32 различных вида растений ** на основе их листьев с использованием методов цифровой обработки изображений. Изображения сначала подвергаются предварительной обработке, а затем из обработанного изображения извлекаются элементы, основанные на их форме, цвете и текстуре.
 
-A dataset was created using the extracted features to train and test the model. The model used was **Support Vector Machine Classifier** and was able to classify with **90.05% accuracy**. 
+Набор данных был создан с использованием извлеченных объектов для обучения и тестирования модели. Используемая модель была ** Машинным классификатором опорных векторов ** и была способна классифицировать с ** точностью 90,05% **.
 
-## Dataset
+## Набор данных
 
-The dataset used is [**Flavia leaves dataset**](http://flavia.sourceforge.net) which also has the breakpoints and the names mentioned for the leaves dataset
+Используемый набор данных - [**Набор данных листьев Флавии**](http://flavia.sourceforge.net ), который также содержит точки останова и имена, упомянутые для набора данных leaves
 
-## Dependencies
+## Зависимости
 
 * [Numpy](http://www.numpy.org)
 * [Pandas](https://pandas.pydata.org)
@@ -21,43 +21,41 @@ The dataset used is [**Flavia leaves dataset**](http://flavia.sourceforge.net) w
 * [Scikit Learn](http://scikit-learn.org/)
 * [Mahotas](http://mahotas.readthedocs.io/en/latest/)
 
-It is recommended to use [Anaconda Python 3.6 distribution](https://www.anaconda.com) and using a `Jupyter Notebook`
+## Инструкции
 
-## Instructions
+* Создайте следующие папки в корне проекта - 
+  * `Набор данных Flavia leaves dataset`: будет содержать набор данных Flavia
+  * "мобильные снимки": будут содержать изображения листьев, снятые с мобильных устройств, для дополнительных целей тестирования
 
-* Create the following folders in the project root - 
-  * `Flavia leaves dataset` : will contain Flavia dataset
-  * `mobile captures` : will contain mobile captured leaf images for additional testing purposes
+## Структура проекта
 
-## Project structure
+* [файл single_image_process_file.ipynb](файл single_image_process_file.ipynb) : содержит исследование методов предварительной обработки и извлечения объектов путем работы с одним изображением.
+* [background_subtract_camera_capture_leaf_file.ipynb](background_subtract_camera_capture_leaf_file.ipynb) : содержит описание методов создания функции вычитания фона для удаления фона с изображений листьев, снятых мобильной камерой.
+* [classify_leaves_flavia.ipynb](Flavia%20py%20files/classify_leaves_flavia.ipynb) : использует извлеченные объекты в качестве входных данных для модели и классифицирует их с помощью классификатора SVM.
+* [preprocess_extract_dataset_flavia.ipynb](Flavia%20py%20files/preprocess_extract_dataset_flavia.ipynb ) : содержит функцию create_dataset(), которая выполняет предварительную обработку изображения и извлечение объектов из набора данных. Набор данных хранится в файле `Flavia_features.csv`
 
-* [single_image_process_file.ipynb](single_image_process_file.ipynb) : contains exploration of preprocessing and feature extraction techniques by operating on a single image
-* [background_subtract_camera_capture_leaf_file.ipynb](background_subtract_camera_capture_leaf_file.ipynb) : contains exploration of techniques to create a background subtraction function to remove background from mobile camera captured leaf images
-* [classify_leaves_flavia.ipynb](Flavia%20py%20files/classify_leaves_flavia.ipynb) : uses extracted features as inputs to the model and classifies them using SVM classifier
-* [preprocess_extract_dataset_flavia.ipynb](Flavia%20py%20files/preprocess_extract_dataset_flavia.ipynb) : contains create_dataset() function which performs image pre-processing and feature extraction on the dataset. The dataset is stored in `Flavia_features.csv`
+## Методология
 
-## Methodology
+### 1. Предварительная обработка
 
-### 1. Pre-processing
+Для предварительной обработки изображения были выполнены следующие шаги:
 
-The following steps were followed for pre-processing the image:
+  1. Преобразование изображения RGB в оттенки серого
+  2. Сглаживание изображения с помощью фильтра Гаусса
+  3. Адаптивное пороговое значение изображения с использованием метода порогового значения Otsu
+  4. Закрытие отверстий с использованием морфологического преобразования
+  5. Выделение границ с использованием контуров
 
-  1. Conversion of RGB to Grayscale image
-  2. Smoothing image using Guassian filter
-  3. Adaptive image thresholding using Otsu's thresholding method
-  4. Closing of holes using Morphological Transformation
-  5. Boundary extraction using contours
+### 2. Извлечение признаков
 
-### 2. Feature extraction
+Из предварительно обработанного изображения были извлечены различные типы элементов листа, которые перечислены следующим образом:
 
-Variou types of leaf features were extracted from the pre-processed image which are listed as follows:
-
-  1. *Shape based features* : physiological length,physological width, area, perimeter, aspect ratio, rectangularity, circularity
-  2. *Color based features* : mean and standard deviations of R,G and B channels
-  3. *Texture based features* : contrast, correlation, inverse difference moments, entropy
+  1. *Характеристики, основанные на форме*: физиологическая длина, физиологическая ширина, площадь, периметр, соотношение сторон, прямоугольность, округлость
+  2. *Характеристики, основанные на цвете*: среднее значение и стандартные отклонения каналов RGB.
+  3. *Особенности, основанные на текстуре*: контраст, корреляция, моменты обратной разности, энтропия
   
-### 3. Model building and testing
+### 3. Построение модели и тестирование
 
-  (a) [Support Vector Machine](http://scikit-learn.org/stable/modules/svm.html) Classifier was used as the model to classify the plant species <br>
-  (b) Features were then scaled using [StandardScaler](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)<br>
-  (c) Also parameter tuning was done to find the appropriate hyperparameters of the model using [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+  * Машина опорных векторов классификатора была использована в качестве модели для классификации видов растений <br>
+  * Затем объекты были масштабированы с помощью StandardScaler<br>
+  * Также была выполнена настройка параметров для поиска соответствующих гиперпараметров модели с использованием GridSearchCV
