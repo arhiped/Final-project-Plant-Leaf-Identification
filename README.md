@@ -1,107 +1,88 @@
-По данным Продовольственной и сельскохозяйственной организации Объединенных Наций (ООН), трансграничные вредители и болезни растений поражают продовольственные культуры, нанося значительный ущерб фермерам и угрожая продовольственной безопасности.
+# Creating an AI app that detects diseases in plants using Facebook’s deep learning platform: PyTorch
+<img src="https://cdn-images-1.medium.com/max/800/1*IbJF_6mRTMsG9gL0j8uz5Q.jpeg">
 
-Болезни растений ежегодно приводят к потере 10-16% мирового урожая сельскохозяйственных культур, стоимость которого оценивается в 220 миллиардов долларов США. Согласно отчету Продовольственной и сельскохозяйственной организации (ФАО), ожидается, что к 2050 году население земли достигнет 9,1 миллиарда человек. Поэтому необходимо увеличить сельскохозяйственное производство до 70%, чтобы удовлетворить потребности в продуктах питания постоянно растущего населения. С другой стороны, широкое использование химических веществ, таких как бактерициды, фунгициды и нематициды, для борьбы с болезнями растений оказывает неблагоприятное воздействие на агроэкосистему. В настоящее время существует потребность в эффективных методах раннего выявления заболеваний для борьбы с болезнями растений для обеспечения продовольственной безопасности и устойчивости агроэкосистемы.
+According to the Food and Agriculture organization of the United Nations (UN), transboundary plant pests and diseases affect food crops, causing significant losses to farmers and threatening food security.
 
-В последние годы распространение трансграничных вредителей и болезней растений резко возросло. Глобализация, торговля и изменение климата, а также снижение устойчивости производственных систем из-за десятилетий интенсификации сельского хозяйства — все это сыграло свою роль.
+Plant diseases contribute 10–16% losses in the global harvest of crops each year costing an estimated US$220 billion. According to a report of the Food and Agriculture Organization (FAO), our world population is anticipated to hit 9.1 billion in 2050. Therefore, agricultural production needs to be increased up to 70% to fulfill the food requirements of a steadily growing population. On the other hand, abundant use of chemicals such as bactericides, fungicides, and nematicides to control plant diseases has been causing adverse effects in the agro-ecosystem. Currently, there is a need for effective early disease detection techniques to control plant diseases for food security and sustainability of agro-ecosystem.
 
-Трансграничные вредители и болезни растений могут легко распространиться на несколько стран и достичь масштабов эпидемии. Вспышки и всплески могут привести к огромным потерям посевов и пастбищ, угрожая средствам к существованию уязвимых фермеров и продовольственной безопасности миллионов людей одновременно.
+The spread of transboundary plant pests and diseases has increased dramatically in recent years. Globalization, trade and climate change, as well as reduced resilience in production systems due to decades of agricultural intensification, have all played a part.
 
-Если вы занимаетесь наукой о данных или машинным обучением, вы, вероятно, слышали об этих платформах, требующих краудсорсинга данных. Первое, что приходит мне на ум, — это Kaggle. Kaggle — это краудсорсинговая платформа, которая привлекает, обучает, обучает и бросает вызов специалистам по обработке данных со всего мира для решения задач data science, машинного обучения и прогнозной аналитики. Эта платформа позволяет специалистам по обработке данных и другим разработчикам участвовать в соревнованиях по машинному обучению, писать и обмениваться кодом, а также размещать наборы данных.
+Transboundary plant pests and diseases can easily spread to several countries and reach epidemic proportions. Outbreaks and upsurges can cause huge losses to crops and pastures, threatening the livelihoods of vulnerable farmers and the food and nutrition security of millions at a time.
 
-В поисках проектных идей и наборов данных я обнаружил другую платформу, похожую на Kaggle, но как некоммерческую, я говорю о crowdAI. crowdAI также принимает вызовы в области открытых данных и помогает университетам, правительственным учреждениям, НПО или предприятиям запускать и управлять своими проблемами с данными. Платформа crowdAI — это инфраструктура с открытым исходным кодом, которая может немедленно привлечь тысячи специалистов по обработке данных по всему миру для работы над интересными проблемами с данными.
+If you are into data science or machine learning, you’ve probably heard about these platforms crowdsourcing data challenges. The first that comes to my mind is Kaggle. Kaggle is this crowd-sourced platform that attracts, nurtures, trains and challenges data scientists from all around the world to solve data science, machine learning, and predictive analytics problems. This platform enables data scientists and other developers to engage in running machine learning contests, write and share code, and to host datasets.
 
-Я хотел упомянуть crowdAI, потому что именно там была задачу по классификации болезней растений, но я хотел достичь той же цели, используя другую платформу глубокого обучения: "PyTorch". Итак, я разработал приложение для искусственного интеллекта, используя модель глубокого обучения и технику трансферного обучения.
+Looking for project ideas and datasets, found out another platform similar to Kaggle, but as a non-profit, I’m talking about crowdAI. crowdAI also hosts open data science challenges and helps universities, government agencies, NGOs, or businesses to run and manage their data challenges. The crowdAI platform is an open source infrastructure that can immediately reach thousands of data scientists around the world to work on interesting data problems.
 
-Компьютерное зрение — это область глубокого обучения, которая растет с каждым днем. Есть много областей, в которых компьютерное зрение может помочь.
+I wanted to mention crowdAI, because it was there where I found the “PlantVillage Disease Classification Challenge”. The goal of this competition was to develop algorithms than can accurately diagnose a disease based on an image.
 
-В том проекте я буду внедрять модель глубокого обучения, которая может выявлять болезни растений, используя Pytorch framework и архитектуру CNN. Цель состоит в том, чтобы обнаружить различные заболевания растений, посмотрев на картинку.
+This challenge has already ended but I wanted to approach the same goal, using a different Deep Learning framework: PyTorch. So, I developed an AI application using a deep learning model and the transfer learning technique.
 
-Я обучу этот классификатор изображений распознавать различные болезни растений по изображению. Это может быть реализовано в приложении для телефона, которое сообщает вам, на какой тип заболевания смотрит ваша камера. Я буду использовать набор данных Plant Village.
+Computer Vision is a field within deep learning that is growing up more everyday . There are many areas Computer Vision can help to. 
 
-Набор данных Plant Village содержит 38 различных классов болезней растений и один фоновый класс из открытого набора данных фоновых изображений Стэнфорда.
+In this notebook I will implement a deep learning model that can identify plant diseases, using Pytorch framework,  a Convolutional Neural Network (CNN) architecture. The goal is to detect different plant diseases by looking a picture.
 
-Классы:
+I'll train this image classifier to recognize the different plant diseases given an image.This can be implemented in a phone app that tells you the type of disease your camera is looking at. I will use the "Plant Village" dataset.
+
+<B>The Plant Village Dataset</B>
+
+The Plant Village dataset contains 38 different plant disease classes and one background class from Stanford's open dataset of background images.
+
+The classes are:
 
 - Apple___Apple_scab
-
 - Apple___Black_rot
-
 - Apple___Cedar_apple_rust
-
 - Apple___healthy
-
 - Blueberry___healthy
-
 - Cherry_(including_sour)___Powdery_mildew
-
 - Cherry_(including_sour)___healthy
-
 - Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot
-
-- Corn_(maize)__Common_rust
-
+- Corn_(maize)___Common_rust_
 - Corn_(maize)___Northern_Leaf_Blight
-
 - Corn_(maize)___healthy
-
 - Grape___Black_rot
-
 - Grape___Esca_(Black_Measles)
-
 - Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
-
 - Grape___healthy
-
 - Orange___Haunglongbing_(Citrus_greening)
-
 - Peach___Bacterial_spot
-
 - Peach___healthy
-
 - Pepper,_bell___Bacterial_spot
-
 - Pepper,_bell___healthy
-
 - Potato___Early_blight
-
 - Potato___Late_blight
-
 - Potato___healthy
-
 - Raspberry___healthy
-
 - Soybean___healthy
-
 - Squash___Powdery_mildew
-
 - Strawberry___Leaf_scorch
-
 - Strawberry___healthy
-
 - Tomato___Bacterial_spot
-
 - Tomato___Early_blight
-
 - Tomato___Late_blight
-
 - Tomato___Leaf_Mold
-
 - Tomato___Septoria_leaf_spot
-
 - Tomato___Spider_mites Two-spotted_spider_mite
-
 - Tomato___Target_Spot
-
 - Tomato___Tomato_Yellow_Leaf_Curl_Virus
-
 - Tomato___Tomato_mosaic_virus
-
 - Tomato___healthy
 
-Инструкции
+<B>INSTRUCTIONS</B>
 
-Проект разбит на несколько этапов:
--	Загрузите и предварительно обработайте набор данных изображений
--	Обучите классификатор изображений в вашем наборе данных
--	Используйте обученный классификатор для прогнозирования содержимого изображения
-Все, что вам нужно для воссоздания этого проекта, есть в ноутбуке jupyter. Все было закодировано в Google Colab из-за его графического процессора.
+The project is broken down into multiple steps:
+
+* Load and preprocess the image dataset
+* Train the image classifier on your dataset
+* Use the trained classifier to predict image content
+
+
+Everything you need to recreate this project is on the jupyter notebook. Everything was coded in Google Colab, because of its GPU. I uploaded the dataset to Google Drive, so you can download it directly. For more details, the notebook includes the instructions to follow.
+
+You can find the requirements in Requirements.txt, but everything is in the notebook, so you can install all by using pip install. I recommend using Google Colab.
+ 
+This project is updated to be compatible with PyTorch 0.4.0
+
+Read more about this project on my blog: https://medium.com/datadriveninvestor/creating-an-ai-app-that-detect-diseases-in-plants-using-facebooks-deep-learning-platform-pytorch-15faaeb6bec3
+
+Paper: "Using Deep Learning for Image-Based Plant Disease Detection" by Sharada Prasanna Mohanty, David Hughes and Marcel Salathé. Read here: https://arxiv.org/ftp/arxiv/papers/1604/1604.03169.pdf
